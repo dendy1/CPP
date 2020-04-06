@@ -1,0 +1,14 @@
+﻿C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(459,5): warning MSB8028: The intermediate directory (x64\Debug\) contains files shared from another project (BankSystem.vcxproj).  This can lead to incorrect clean and rebuild behavior.
+  Bank.cpp
+C:\Users\Andrei\Desktop\BankSystem\Bank.cpp(50,24): warning C4267: return: преобразование из "size_t" в "int"; возможна потеря данных
+  BankSystemMain.cpp
+  BanksView.cpp
+  BankView.cpp
+  Client.cpp
+  ClientsView.cpp
+  ClientView.cpp
+  IndividualPerson.cpp
+  LegalPerson.cpp
+  MainView.cpp
+  Создание кода...
+  BankSystem.vcxproj -> C:\Users\Andrei\Desktop\BankSystem\x64\Debug\Task2.exe

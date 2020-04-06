@@ -1,0 +1,44 @@
+﻿  Bank.cpp
+F:\Google\GoogleDrive\Projects\BankSystem\Client.h(9,3): error C2061: синтаксическая ошибка: идентификатор "Bank"
+F:\Google\GoogleDrive\Projects\BankSystem\Client.h(28,7): error C2143: синтаксическая ошибка: отсутствие ";" перед "*"
+F:\Google\GoogleDrive\Projects\BankSystem\Client.h(28,7): error C4430: отсутствует спецификатор типа - предполагается int. Примечание. C++ не поддерживает int по умолчанию
+F:\Google\GoogleDrive\Projects\BankSystem\Client.h(28,14): error C2238: непредвиденные лексемы перед ";"
+F:\Google\GoogleDrive\Projects\BankSystem\Client.h(13,4): error C2065: _bank: необъявленный идентификатор
+F:\Google\GoogleDrive\Projects\BankSystem\Client.h(13,12): error C2065: bank: необъявленный идентификатор
+F:\Google\GoogleDrive\Projects\BankSystem\Client.h(18,11): error C2065: _bank: необъявленный идентификатор
+F:\Google\GoogleDrive\Projects\BankSystem\Client.h(18,1): error C2541: delete: нельзя удалять объекты, не являющиеся указателями
+F:\Google\GoogleDrive\Projects\BankSystem\Bank.cpp(6,58): error C2661: Client::Client: нет перегруженной функции, принимающей 3 аргументов
+  Client.cpp
+F:\Google\GoogleDrive\Projects\BankSystem\Bank.h(18,23): error C2061: синтаксическая ошибка: идентификатор "Client"
+F:\Google\GoogleDrive\Projects\BankSystem\Bank.h(20,26): error C2061: синтаксическая ошибка: идентификатор "Client"
+F:\Google\GoogleDrive\Projects\BankSystem\Bank.h(26,8): error C2143: синтаксическая ошибка: отсутствие ";" перед "*"
+F:\Google\GoogleDrive\Projects\BankSystem\Bank.h(26,8): error C4430: отсутствует спецификатор типа - предполагается int. Примечание. C++ не поддерживает int по умолчанию
+F:\Google\GoogleDrive\Projects\BankSystem\Bank.h(26,30): error C2238: непредвиденные лексемы перед ";"
+F:\Google\GoogleDrive\Projects\BankSystem\Bank.h(27,8): error C2143: синтаксическая ошибка: отсутствие ";" перед "*"
+F:\Google\GoogleDrive\Projects\BankSystem\Bank.h(27,8): error C4430: отсутствует спецификатор типа - предполагается int. Примечание. C++ не поддерживает int по умолчанию
+F:\Google\GoogleDrive\Projects\BankSystem\Bank.h(27,39): error C2238: непредвиденные лексемы перед ";"
+F:\Google\GoogleDrive\Projects\BankSystem\Bank.h(35,14): error C2065: Client: необъявленный идентификатор
+F:\Google\GoogleDrive\Projects\BankSystem\Bank.h(35,21): error C2059: синтаксическая ошибка: >
+  IndividualPerson.cpp
+F:\Google\GoogleDrive\Projects\BankSystem\Bank.h(18,23): error C2061: синтаксическая ошибка: идентификатор "Client"
+F:\Google\GoogleDrive\Projects\BankSystem\Bank.h(20,26): error C2061: синтаксическая ошибка: идентификатор "Client"
+F:\Google\GoogleDrive\Projects\BankSystem\Bank.h(26,8): error C2143: синтаксическая ошибка: отсутствие ";" перед "*"
+F:\Google\GoogleDrive\Projects\BankSystem\Bank.h(26,8): error C4430: отсутствует спецификатор типа - предполагается int. Примечание. C++ не поддерживает int по умолчанию
+F:\Google\GoogleDrive\Projects\BankSystem\Bank.h(26,30): error C2238: непредвиденные лексемы перед ";"
+F:\Google\GoogleDrive\Projects\BankSystem\Bank.h(27,8): error C2143: синтаксическая ошибка: отсутствие ";" перед "*"
+F:\Google\GoogleDrive\Projects\BankSystem\Bank.h(27,8): error C4430: отсутствует спецификатор типа - предполагается int. Примечание. C++ не поддерживает int по умолчанию
+F:\Google\GoogleDrive\Projects\BankSystem\Bank.h(27,39): error C2238: непредвиденные лексемы перед ";"
+F:\Google\GoogleDrive\Projects\BankSystem\Bank.h(35,14): error C2065: Client: необъявленный идентификатор
+F:\Google\GoogleDrive\Projects\BankSystem\Bank.h(35,21): error C2059: синтаксическая ошибка: >
+  LegalPerson.cpp
+F:\Google\GoogleDrive\Projects\BankSystem\Bank.h(18,23): error C2061: синтаксическая ошибка: идентификатор "Client"
+F:\Google\GoogleDrive\Projects\BankSystem\Bank.h(20,26): error C2061: синтаксическая ошибка: идентификатор "Client"
+F:\Google\GoogleDrive\Projects\BankSystem\Bank.h(26,8): error C2143: синтаксическая ошибка: отсутствие ";" перед "*"
+F:\Google\GoogleDrive\Projects\BankSystem\Bank.h(26,8): error C4430: отсутствует спецификатор типа - предполагается int. Примечание. C++ не поддерживает int по умолчанию
+F:\Google\GoogleDrive\Projects\BankSystem\Bank.h(26,30): error C2238: непредвиденные лексемы перед ";"
+F:\Google\GoogleDrive\Projects\BankSystem\Bank.h(27,8): error C2143: синтаксическая ошибка: отсутствие ";" перед "*"
+F:\Google\GoogleDrive\Projects\BankSystem\Bank.h(27,8): error C4430: отсутствует спецификатор типа - предполагается int. Примечание. C++ не поддерживает int по умолчанию
+F:\Google\GoogleDrive\Projects\BankSystem\Bank.h(27,39): error C2238: непредвиденные лексемы перед ";"
+F:\Google\GoogleDrive\Projects\BankSystem\Bank.h(35,14): error C2065: Client: необъявленный идентификатор
+F:\Google\GoogleDrive\Projects\BankSystem\Bank.h(35,21): error C2059: синтаксическая ошибка: >
+  Создание кода...

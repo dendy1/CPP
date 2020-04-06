@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Исходные файлы">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Файлы заголовков">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Файлы ресурсов">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Исходные файлы\Views">
+      <UniqueIdentifier>{aa420eb5-5172-4001-925f-f2cc3d77a95d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\Views">
+      <UniqueIdentifier>{89f789c9-c7e5-4c9b-a6a9-2f134236b95b}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Bank.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="Client.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="LegalPerson.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="IndividualPerson.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="MainView.cpp">
+      <Filter>Исходные файлы\Views</Filter>
+    </ClCompile>
+    <ClCompile Include="ClientView.cpp">
+      <Filter>Исходные файлы\Views</Filter>
+    </ClCompile>
+    <ClCompile Include="BanksView.cpp">
+      <Filter>Исходные файлы\Views</Filter>
+    </ClCompile>
+    <ClCompile Include="BankView.cpp">
+      <Filter>Исходные файлы\Views</Filter>
+    </ClCompile>
+    <ClCompile Include="ClientsView.cpp">
+      <Filter>Исходные файлы\Views</Filter>
+    </ClCompile>
+    <ClCompile Include="BankSystemMain.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Bank.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Client.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="LegalPerson.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="IndividualPerson.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="MainView.h">
+      <Filter>Файлы заголовков\Views</Filter>
+    </ClInclude>
+    <ClInclude Include="ClientView.h">
+      <Filter>Файлы заголовков\Views</Filter>
+    </ClInclude>
+    <ClInclude Include="BanksView.h">
+      <Filter>Файлы заголовков\Views</Filter>
+    </ClInclude>
+    <ClInclude Include="BankView.h">
+      <Filter>Файлы заголовков\Views</Filter>
+    </ClInclude>
+    <ClInclude Include="ClientsView.h">
+      <Filter>Файлы заголовков\Views</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
