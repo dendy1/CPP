@@ -5,6 +5,7 @@ void LegalPerson::TransferMoney(Client* client, float amount)
 {
 	float account = (*_bank).CalculateTransfer(amount);
 	WithdrawMoney(account);
+	_bank->OnClientTransfer(account - amount);
 	client -> PutMoney(amount);
 }
 #include <iostream>

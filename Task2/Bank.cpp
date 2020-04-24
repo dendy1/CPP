@@ -32,17 +32,9 @@ void Bank::AddClient(Client* client)
 	_clients.push_back(client);
 }
 
-void Bank::RemoveClient(Client* client)
-{
-	_clients.erase(remove(_clients.begin(), _clients.end(), client), _clients.end());
-	delete[] client;
-}
-
 void Bank::RemoveClient(int index)
 {
-	Client* client = _clients[index];
 	_clients.erase(_clients.begin() + index);
-	delete[] client;
 }
 
 int Bank::GetClientsCount()
@@ -89,6 +81,11 @@ void Bank::OnClientWidthdraw(float amount)
 		throw std::exception("Ошибка! Попытка снять сумму больше, чем имеется на счёте банка.");
 
 	_account -= amount;
+}
+
+void Bank::OnClientTransfer(float amount)
+{
+	_account += amount;
 }
 
 float Bank::CalculateTransfer(float amount)

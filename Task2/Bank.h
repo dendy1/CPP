@@ -17,7 +17,6 @@ class Bank
 
 		void AddClient(Client* client);
 		void AddClient(string firstName, string secondName, int type);
-		void RemoveClient(Client* client);
 		void RemoveClient(int index);
 
 		int GetClientsCount();
@@ -31,6 +30,7 @@ class Bank
 
 		void OnClientPut(float amount);
 		void OnClientWidthdraw(float amount);
+		void OnClientTransfer(float amount);
 		float CalculateTransfer(float amount);
 
 		void Print();

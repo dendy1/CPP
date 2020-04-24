@@ -11,6 +11,7 @@ Client::Client(std::string firstName, std::string secondName, Bank* bank)
 
 Client::~Client()
 {
+
 }
 
 void Client::PutMoney(float amount)

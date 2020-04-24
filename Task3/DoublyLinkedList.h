@@ -25,6 +25,7 @@ public:
 		Node<T>* node = new Node<T>(value);
 		node->next = _head;
 
+		// Ћишн€€ проверка
 		if (_head != nullptr)
 			_head->prev = node;
 
@@ -154,7 +155,7 @@ public:
 	{
 		if (index < 0 || index > _count - 1)
 			throw std::exception("Index out of range");
-
+		//
 		if (index == 0)
 			return _head;
 		if (index == _count - 1)
@@ -173,7 +174,7 @@ public:
 	{
 		if (_count < 1)
 			throw std::exception("List is empty!");
-
+		// возвращать значение
 		return _head;
 	}
 
@@ -198,6 +199,7 @@ public:
 
 	void Print()
 	{
+		// tostring
 		Node<T>* tmp = _head;
 		while (tmp != nullptr)
 		{
