@@ -1,6 +1,8 @@
 #pragma once
 #include "Node.h"
 #include <iostream>
+#include <string>
+#include <sstream>
 
 template <class T>
 class DoublyLinkedList
@@ -10,18 +12,49 @@ private:
 	Node<T>* _tail;
 	int _count;
 
+	void setItem(int index, T value) 
+	{ 
+		if (index < 0 || index > _count - 1)
+			throw std::exception("Index out of range");
+
+		int i = 0;
+
+		Node<T>* tmp = _head;
+		while (i++ < index)
+			tmp = tmp->next;
+
+		tmp->value = value;
+	}
+
+	Node<T>* getItem(const int index) 
+	{ 
+		if (index < 0 || index > _count - 1)
+			throw std::exception("Index out of range");
+
+		int i = 0;
+
+		Node<T>* tmp = _head;
+		while (i++ < index)
+			tmp = tmp->next;
+
+		return tmp;
+	}
+
 public:
-	DoublyLinkedList() {
+	DoublyLinkedList() 
+	{
 		_head = nullptr;
 		_tail = nullptr;
 		_count = 0;
 	}
 
-	~DoublyLinkedList() {
+	~DoublyLinkedList() 
+	{
 		Clear();
 	}
 
-	void InsertHead(T value) {
+	void InsertHead(T value) 
+	{
 		Node<T>* node = new Node<T>(value);
 		node->next = _head;
 
@@ -37,7 +70,8 @@ public:
 		_count++;
 	}
 
-	void InsertTail(T value) {
+	void InsertTail(T value) 
+	{
 		Node<T>* node = new Node<T>(value);
 		node->prev = _tail;
 
@@ -52,20 +86,20 @@ public:
 		_count++;
 	}
 
-	void InsertAfter(T data, int position)
+	void InsertPosition(T data, int position)
 	{
-		if (position < -1 || position > _count - 1)
+		if (position < 0 || position > _count)
 			throw std::exception("Index out of range");
 
-		if (position == -1)
+		if (position == 0)
 			InsertHead(data);
-		else if (position == _count - 1)
+		else if (position == _count)
 			InsertTail(data);
 		else
 		{
 			Node<T>* node = new Node<T>(data);
 
-			Node<T>* prev = this->operator[](position);
+			Node<T>* prev = getItem(position - 1);
 			Node<T>* next = prev->next;
 
 			prev->next = node;
@@ -84,6 +118,7 @@ public:
 			throw std::exception("List is empty!");
 
 		Node<T>* head = _head;
+
 		if (_count == 1)
 		{
 			_head = _tail = nullptr;
@@ -120,7 +155,7 @@ public:
 		_count--;
 	}
 
-	void Remove(int position)
+	void RemovePosition(int position)
 	{
 		if (position < 0 || position > _count - 1)
 			throw std::exception("Index out of range");
@@ -134,7 +169,7 @@ public:
 			RemoveTail();
 		else
 		{
-			Node<T>* removableNode = this->operator[](position);
+			Node<T>* removableNode = getItem(position);
 
 			Node<T>* prev = removableNode->prev;
 			Node<T>* next = removableNode->next;
@@ -147,19 +182,14 @@ public:
 			_count--;
 		}
 
-		if (_count == 1)
+		if (_count == 0)
 			_head = _tail = nullptr;
 	}
 
-	Node<T>* operator[](const int index)
+	T operator[](const int index)
 	{
 		if (index < 0 || index > _count - 1)
 			throw std::exception("Index out of range");
-		//
-		if (index == 0)
-			return _head;
-		if (index == _count - 1)
-			return _tail;
 
 		int i = 0;
 
@@ -167,23 +197,23 @@ public:
 		while (i++ < index)
 			tmp = tmp->next;
 
-		return tmp;
+		return tmp->value;
 	}
 
-	Node<T>* GetFirst()
-	{
-		if (_count < 1)
-			throw std::exception("List is empty!");
-		// возвращать значение
-		return _head;
-	}
-
-	Node<T>* GetLast()
+	T GetFirst()
 	{
 		if (_count < 1)
 			throw std::exception("List is empty!");
 
-		return _tail;
+		return _head->value;
+	}
+
+	T GetLast()
+	{
+		if (_count < 1)
+			throw std::exception("List is empty!");
+
+		return _tail->value;
 	}
 	
 	int GetCount()
@@ -197,20 +227,23 @@ public:
 			RemoveHead();
 	}
 
-	void Print()
+	std::string ToString()
 	{
-		// tostring
+		std::stringstream ss;
+
 		Node<T>* tmp = _head;
 		while (tmp != nullptr)
 		{
-
-			std::cout << tmp->value;
+			ss << tmp->value;
 			if (tmp != _tail)
 			{
-				std::cout << "-->";
+				ss << "-->";
 			}
 			tmp = tmp->next;
 		}
+
+
+		return ss.str();
 	}
 };
 

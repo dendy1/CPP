@@ -148,11 +148,13 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="DoublyLinkedList.cpp" />
+    <ClCompile Include="MainView.cpp" />
     <ClCompile Include="Node.cpp" />
     <ClCompile Include="Task3.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DoublyLinkedList.h" />
+    <ClInclude Include="MainView.h" />
     <ClInclude Include="Node.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

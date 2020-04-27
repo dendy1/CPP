@@ -3,67 +3,15 @@
 
 #include <iostream>
 #include "DoublyLinkedList.h"
+#include "MainView.h"
 
 int main()
 {
-    try
-    {
-        DoublyLinkedList<int> intList;
-        intList.InsertTail(5);
-        intList.InsertTail(4);
-        intList.InsertTail(3);
-        intList.InsertTail(2);
-        intList.InsertTail(1);
-        std::cout << "Do udalenia: ";
-        intList.Print();
-        std::cout << std::endl;
-        std::cout << "Udalenie 2 (3) elementa: ";
-        intList.Remove(2);
-        intList.Print();
-        std::cout << std::endl;
-        std::cout << "Udalenie hvosta: ";
-        intList.RemoveTail();
-        intList.Print();
-        std::cout << std::endl;
-        std::cout << "Dobavlenie golovi: ";
-        intList.InsertHead(-3);
-        intList.Print();
-        std::cout << std::endl;
-        std::cout << "Dobavlenie hvosta: ";
-        intList.InsertTail(-10);
-        intList.Print();
-        std::cout << std::endl;
-        std::cout << "Dobavlenie posle 3 (4) elementa: ";
-        intList.InsertAfter(-200, 3);
-        intList.Print();
+    setlocale(LC_ALL, "Russian");
 
-        std::cout << std::endl << "List count: " << intList.GetCount() << std::endl << "List First: " << intList.GetFirst()->value << std::endl << "List Last: " << intList.GetLast()->value << std::endl;
+    MainView<int> intMainView;
 
-        DoublyLinkedList<char> charList;
-        charList.InsertTail('a');
-        charList.InsertTail('b');
-        charList.InsertTail('c');
-        charList.InsertTail('d');
-        charList.InsertTail('e');
-        std::cout << "Do udalenia: ";
-        charList.Print();
-        std::cout << std::endl;
-        std::cout << "Udalenie 4 (5) elementa: ";
-        charList.Remove(4);
-        charList.Print();
-        std::cout << std::endl;
-        std::cout << "Udalenie golovi: ";
-        charList.RemoveHead();
-        charList.Print();
-        std::cout << std::endl;
-        std::cout << "Clear: ";
-        charList.Clear();
-        charList.Print();
-    }
-    catch (std::exception & e)
-    {
-        std::cout << std::endl << "ERROR! " << e.what();
-    }
+    intMainView.Show();
 }
 
 // Запуск программы: CTRL+F5 или меню "Отладка" > "Запуск без отладки"
