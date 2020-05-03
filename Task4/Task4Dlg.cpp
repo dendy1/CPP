@@ -62,6 +62,10 @@ void CTask4Dlg::DoDataExchange(CDataExchange* pDX)
 {
 	CDialogEx::DoDataExchange(pDX);
 	DDX_Control(pDX, IDC_MFCEDITBROWSE1, browser);
+	DDX_Control(pDX, IDC_LIST1, listbox);
+	DDX_Control(pDX, IDC_LIST2, listbox2);
+	DDX_Control(pDX, IDC_COMBO2, combobox);
+	DDX_Control(pDX, IDC_BUTTON2, layerButton);
 }
 
 BEGIN_MESSAGE_MAP(CTask4Dlg, CDialogEx)
@@ -72,6 +76,9 @@ BEGIN_MESSAGE_MAP(CTask4Dlg, CDialogEx)
 //	ON_BN_CLICKED(IDOK, &CTask4Dlg::OnBnClickedOk)
 //	ON_EN_CHANGE(IDC_MFCEDITBROWSE1, &CTask4Dlg::OnEnChangeMfceditbrowse1)
 ON_EN_CHANGE(IDC_MFCEDITBROWSE1, &CTask4Dlg::OnEnChangeMfceditbrowse1)
+ON_BN_CLICKED(IDC_BUTTON1, &CTask4Dlg::OnBnClickedButton1)
+ON_BN_CLICKED(IDC_BUTTON2, &CTask4Dlg::OnBnClickedButton2)
+ON_CBN_SELCHANGE(IDC_COMBO2, &CTask4Dlg::OnCbnSelchangeCombo2)
 END_MESSAGE_MAP()
 
 
@@ -108,6 +115,7 @@ BOOL CTask4Dlg::OnInitDialog()
 
 	// TODO: добавьте дополнительную инициализацию
 
+	browser.EnableFileBrowseButton(_T("TXT"), _T("Text files|*.txt||"));
 	return TRUE;  // возврат значения TRUE, если фокус не передан элементу управления
 }
 
@@ -192,8 +200,8 @@ void CTask4Dlg::OnEnChangeMfceditbrowse1()
 
 	int count = _ttoi(strArr[0]);
 	int nTokenPos;
-	CStringA strToken;
-	std::vector<Vertex*> vertices;
+	CStringA strToken, strNeighbors;
+	std::vector<Vertex<const char*>*> vertices;
 	for (int i = 1; i < strArr.GetCount(); i++)
 	{
 		nTokenPos = 0;
@@ -201,32 +209,69 @@ void CTask4Dlg::OnEnChangeMfceditbrowse1()
 		const size_t newsizea = (strToken.GetLength() + 1);
 		char* nstringa = new char[newsizea];
 		strcpy_s(nstringa, newsizea, strToken);
-		vertices.push_back(new Vertex(nstringa));
+		vertices.push_back(new Vertex<const char*>(nstringa));
 	}
 
 	for (int i = 1; i < strArr.GetCount(); i++)
 	{
+		auto currentVertex = vertices[i - 1];
+
 		nTokenPos = 1;
-		strToken = strArr[i].Tokenize(_T("|"), nTokenPos);
+		strNeighbors = strArr[i].Tokenize(_T("|"), nTokenPos);
 
 		nTokenPos = 0;
-		strToken = strToken.Tokenize(",", nTokenPos);
+		strToken = strNeighbors.Tokenize(",", nTokenPos);
 		while (!strToken.IsEmpty())
 		{
 			const char* s = (const char*)strToken.GetBuffer();
-			auto v = std::find_if(vertices.begin(), vertices.end(), [&strToken](const Vertex* obj) {return std::strcmp(obj->value, (const char*)strToken.GetBuffer()); });
+			auto neighbour = std::find_if(vertices.begin(), vertices.end(), [&s](const Vertex<const char*>* obj) -> bool { return std::strcmp(obj->value, s) == 0; });
 
 
-			if (v != vertices.end() && vertices[i - 1] != *v)
+			if (neighbour != vertices.end() && currentVertex != *neighbour)
 			{
-				vertices[i - 1]->neighbors.push_back(*v);
-				(*v)->neighbors.push_back(vertices[i - 1]);
+				currentVertex->neighbors.push_back(*neighbour);
 			}
 
 			strToken.ReleaseBuffer();
-			nTokenPos++;
+			strToken = strNeighbors.Tokenize(",", nTokenPos);
 		}
 	}
 
-	count = 5;
+	graph.vertices = vertices;
+
+	listbox.ResetContent();
+	combobox.ResetContent();
+
+	for (auto vertex : graph.vertices)
+	{
+		listbox.AddString((vertex->ToString()).c_str());
+		combobox.AddString((vertex->ToString()).c_str());
+	}
+	combobox.SetCurSel(0);
+
+	layerButton.ShowWindow(SW_SHOW);
+	combobox.ShowWindow(SW_SHOW);
+}
+
+void CTask4Dlg::OnBnClickedButton1()
+{
+	// TODO: добавьте свой код обработчика уведомлений
+	this->OnCancel();
+}
+
+
+void CTask4Dlg::OnBnClickedButton2()
+{
+	listbox2.ResetContent();
+	graph.MarkNeighbors(vertexIndex);
+	for (auto vertex : graph.vertices)
+	{
+		listbox2.AddString((vertex->ToStringWithLayer()).c_str());
+	}
+}
+
+
+void CTask4Dlg::OnCbnSelchangeCombo2()
+{
+	vertexIndex = combobox.GetCurSel();
 }

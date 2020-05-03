@@ -34,5 +34,13 @@ protected:
 public:
 	afx_msg void OnEnChangeMfceditbrowse1();
 	CMFCEditBrowseCtrl browser;
-	Graph graph;
+	Graph<const char*> graph;
+	int vertexIndex;
+	CListBox listbox;
+	afx_msg void OnBnClickedButton1();
+	afx_msg void OnBnClickedButton2();
+	CListBox listbox2;
+	afx_msg void OnCbnSelchangeCombo2();
+	CComboBox combobox;
+	CButton layerButton;
 };
