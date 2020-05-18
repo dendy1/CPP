@@ -3,6 +3,7 @@
 #include <vector>
 #include <queue>
 #include <string>
+#include <algorithm>
 
 template <class T>
 class Graph
@@ -67,6 +68,11 @@ public:
 			if (marked.empty() || vertex->layer != marked.front()->layer)
 				layer++;
 		}
+
+		sort(vertices.begin(), vertices.end(), [](const Vertex<T>* lhs, const Vertex<T>* rhs)
+			{
+				return lhs->layer < rhs->layer;
+			});
 	};
 
 	std::vector<std::wstring> ToStringArray()

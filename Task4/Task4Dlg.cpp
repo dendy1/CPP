@@ -12,7 +12,6 @@
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #endif
-#include <sstream>
 
 
 // Диалоговое окно CAboutDlg используется для описания сведений о приложении
@@ -179,70 +178,33 @@ void CTask4Dlg::OnEnChangeMfceditbrowse1()
 
 	CString filename;
     browser.GetWindowTextW(filename);
+	graph = new Graph<int>();
 
-	CStringArray strArr;
-	CString strLine;
-	TRY
+	try
 	{
-		CStdioFile file(filename, CFile::modeRead);
-		while (file.ReadString(strLine))
-		{
-			strArr.Add(strLine);
-		}
+		graph = GraphIO::ReadGraphFromFile(filename);
 	}
-	CATCH_ALL(e)
+	catch (BadVertexValueException ex)
 	{
-		e->ReportError(); // shows what's going wrong 
+		std::cout << ex.what();
 	}
-	END_CATCH_ALL
-
-	
-
-	int count = _ttoi(strArr[0]);
-	int nTokenPos;
-	CStringA strToken, strNeighbors;
-	std::vector<Vertex<const char*>*> vertices;
-	for (int i = 1; i < strArr.GetCount(); i++)
+	catch (VertexNotFoundException ex)
 	{
-		nTokenPos = 0;
-		strToken = strArr[i].Tokenize(_T("|"), nTokenPos);
-		const size_t newsizea = (strToken.GetLength() + 1);
-		char* nstringa = new char[newsizea];
-		strcpy_s(nstringa, newsizea, strToken);
-		vertices.push_back(new Vertex<const char*>(nstringa));
+		std::cout << ex.what();
 	}
-
-	for (int i = 1; i < strArr.GetCount(); i++)
+	catch (NeighbourNotFoundException ex)
 	{
-		auto currentVertex = vertices[i - 1];
-
-		nTokenPos = 1;
-		strNeighbors = strArr[i].Tokenize(_T("|"), nTokenPos);
-
-		nTokenPos = 0;
-		strToken = strNeighbors.Tokenize(",", nTokenPos);
-		while (!strToken.IsEmpty())
-		{
-			const char* s = (const char*)strToken.GetBuffer();
-			auto neighbour = std::find_if(vertices.begin(), vertices.end(), [&s](const Vertex<const char*>* obj) -> bool { return std::strcmp(obj->value, s) == 0; });
-
-
-			if (neighbour != vertices.end() && currentVertex != *neighbour)
-			{
-				currentVertex->neighbors.push_back(*neighbour);
-			}
-
-			strToken.ReleaseBuffer();
-			strToken = strNeighbors.Tokenize(",", nTokenPos);
-		}
+		std::cout << ex.what();
 	}
-
-	graph.vertices = vertices;
+	catch (...)
+	{
+		std::cout << "Error";
+	}
 
 	listbox.ResetContent();
 	combobox.ResetContent();
 
-	for (auto vertex : graph.vertices)
+	for (auto vertex : graph->vertices)
 	{
 		listbox.AddString((vertex->ToString()).c_str());
 		combobox.AddString((vertex->ToString()).c_str());
@@ -250,7 +212,8 @@ void CTask4Dlg::OnEnChangeMfceditbrowse1()
 	combobox.SetCurSel(0);
 
 	layerButton.ShowWindow(SW_SHOW);
-	combobox.ShowWindow(SW_SHOW);
+	combobox.ShowWindow(SW_SHOW); 
+
 }
 
 void CTask4Dlg::OnBnClickedButton1()
@@ -262,9 +225,11 @@ void CTask4Dlg::OnBnClickedButton1()
 
 void CTask4Dlg::OnBnClickedButton2()
 {
+	CStdioFile file;
+
 	listbox2.ResetContent();
-	graph.MarkNeighbors(vertexIndex);
-	for (auto vertex : graph.vertices)
+	graph->MarkNeighbors(vertexIndex);
+	for (auto vertex : graph->vertices)
 	{
 		listbox2.AddString((vertex->ToStringWithLayer()).c_str());
 	}

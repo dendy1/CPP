@@ -3,7 +3,7 @@
 //
 
 #pragma once
-#include "Graph.h"
+#include "GraphIO.h"
 
 // Диалоговое окно CTask4Dlg
 class CTask4Dlg : public CDialogEx
@@ -32,9 +32,9 @@ protected:
 	afx_msg HCURSOR OnQueryDragIcon();
 	DECLARE_MESSAGE_MAP()
 public:
+	Graph<int>* graph;
 	afx_msg void OnEnChangeMfceditbrowse1();
 	CMFCEditBrowseCtrl browser;
-	Graph<const char*> graph;
 	int vertexIndex;
 	CListBox listbox;
 	afx_msg void OnBnClickedButton1();

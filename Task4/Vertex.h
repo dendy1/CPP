@@ -31,7 +31,16 @@ public:
 
     ~Vertex()
     {
+
     };
+
+    bool Compare(T otherValue)
+    {
+        if (typeid(T) == typeid(char*))
+            return std::strcmp((char*)value, (char*)otherValue) == 0;
+
+        return value == otherValue;
+    }
 
     std::wstring ToString()
     {
