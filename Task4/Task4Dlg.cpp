@@ -196,10 +196,6 @@ void CTask4Dlg::OnEnChangeMfceditbrowse1()
 	{
 		std::cout << ex.what();
 	}
-	catch (...)
-	{
-		std::cout << "Error";
-	}
 
 	listbox.ResetContent();
 	combobox.ResetContent();
@@ -228,10 +224,18 @@ void CTask4Dlg::OnBnClickedButton2()
 	CStdioFile file;
 
 	listbox2.ResetContent();
-	graph->MarkNeighbors(vertexIndex);
+	graph->qqq(vertexIndex);
 	for (auto vertex : graph->vertices)
 	{
 		listbox2.AddString((vertex->ToStringWithLayer()).c_str());
+	}
+
+	char strFilter[] = { "Text Files (*.txt)|*.txt|" };
+	CFileDialog FileDlg(FALSE, CString(".txt"), NULL, 0, CString(strFilter));
+
+	if (FileDlg.DoModal() == IDOK)
+	{
+		GraphIO::WriteGraphToFile(graph, FileDlg.GetPathName());
 	}
 }
 

@@ -60,7 +60,6 @@ inline Graph<int>* GraphIO::ReadGraphFromFile(CString filename)
 		auto currentVertex = vertices[i];
 
 		nTokenPos = 1;
-		// Парсим строку после `|`
 		strNeighbors = strArr[i].Tokenize(_T("|"), nTokenPos);
 
 		nTokenPos = 0;
@@ -111,4 +110,17 @@ inline Graph<int>* GraphIO::ReadGraphFromFile(CString filename)
 	}
 
 	return new Graph<int>(vertices);
+}
+
+inline void GraphIO::WriteGraphToFile(Graph<int>* graph, CString filename)
+{
+	CFile file(filename, CFile::modeReadWrite | CFile::modeCreate);
+
+	for (auto vertex : graph->vertices)
+	{
+		file.Write(vertex->ToStringWithLayer().c_str(), vertex->ToStringWithLayer().size() * sizeof(TCHAR));
+		file.Write(_T("\r\n"), 2 * sizeof(TCHAR));
+	}
+
+	file.Close();
 }

@@ -29,11 +29,29 @@ public:
 		}
 	};
 
-	void MarkNeighbors(int index)
+	void qqq(int index)
 	{
 		for (auto v : vertices)
 			v->layer = -1;
 
+		MarkNeighbors(index);
+
+		for (int i = 0; i < vertices.size(); i++)
+		{
+			if (vertices[i]->layer > -1 || i == index)
+				continue;
+
+			MarkNeighbors(i);
+		}
+
+		sort(vertices.begin(), vertices.end(), [](const Vertex<T>* lhs, const Vertex<T>* rhs)
+			{
+				return lhs->layer < rhs->layer;
+			});
+	}
+
+	void MarkNeighbors(int index)
+	{
 		std::queue<Vertex<T>*> marked;
 		int layer = 0;
 
@@ -47,7 +65,6 @@ public:
 			neighbor->layer = layer;
 			marked.push(neighbor);
 		}
-		
 
 		while (!marked.empty())
 		{
@@ -68,12 +85,8 @@ public:
 			if (marked.empty() || vertex->layer != marked.front()->layer)
 				layer++;
 		}
-
-		sort(vertices.begin(), vertices.end(), [](const Vertex<T>* lhs, const Vertex<T>* rhs)
-			{
-				return lhs->layer < rhs->layer;
-			});
 	};
+
 
 	std::vector<std::wstring> ToStringArray()
 	{
