@@ -3,7 +3,7 @@
 #include <exception>
 #include <sstream>
 
-struct BadVertexValueException : public std::exception
+struct BadVertexValueException : CException
 {
 private:
     const char* _value;
@@ -24,7 +24,7 @@ public:
     }
 };
 
-struct VertexNotFoundException : public std::exception
+struct VertexNotFoundException : CException
 {
 private:
     const char* _vertex;
@@ -44,7 +44,7 @@ public:
 };
 
 
-struct NeighbourNotFoundException : public std::exception
+struct NeighbourNotFoundException : CException
 {
 private:
     std::wstring _vertex;

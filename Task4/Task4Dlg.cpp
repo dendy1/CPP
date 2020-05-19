@@ -8,6 +8,9 @@
 #include "Task4Dlg.h"
 #include "afxdialogex.h"
 #include <stdlib.h>
+#include <exception>
+#include <typeinfo>
+#include <stdexcept>
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -184,17 +187,20 @@ void CTask4Dlg::OnEnChangeMfceditbrowse1()
 	{
 		graph = GraphIO::ReadGraphFromFile(filename);
 	}
-	catch (BadVertexValueException ex)
+	catch (BadVertexValueException* ex)
 	{
-		std::cout << ex.what();
+		AfxMessageBox(_T("Ошибка в значении вершины в исходном файле"), MB_OK | MB_ICONSTOP);
+		return;
 	}
-	catch (VertexNotFoundException ex)
+	catch (VertexNotFoundException* ex)
 	{
-		std::cout << ex.what();
+		AfxMessageBox(_T("Обращение к вершиены, которотая не указана в исходном файле"), MB_OK | MB_ICONSTOP);
+		return;
 	}
-	catch (NeighbourNotFoundException ex)
+	catch (NeighbourNotFoundException* ex)
 	{
-		std::cout << ex.what();
+		AfxMessageBox(_T("Для одной из вершин не указал сосед в исходном файле"), MB_OK | MB_ICONSTOP);
+		return;
 	}
 
 	listbox.ResetContent();

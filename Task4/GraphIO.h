@@ -45,6 +45,8 @@ inline Graph<int>* GraphIO::ReadGraphFromFile(CString filename)
 		strcpy_s(vertexString, size, strToken);
 		auto vertexValue = atoi(vertexString);
 
+		strArr[i] = strArr[i].Tokenize(_T("|"), nTokenPos);
+
 		if (!vertexValue)
 		{
 			const char* name = typeid(int).name();
@@ -58,23 +60,20 @@ inline Graph<int>* GraphIO::ReadGraphFromFile(CString filename)
 	for (int i = 0; i < strArr.GetCount(); i++)
 	{
 		auto currentVertex = vertices[i];
+		strNeighbors = strArr[i];
 
-		nTokenPos = 1;
-		strNeighbors = strArr[i].Tokenize(_T("|"), nTokenPos);
+		// Returns first token  
+		char* token;
+		char* rest = strNeighbors.GetBuffer();
 
-		nTokenPos = 0;
-		strToken = strNeighbors.Tokenize(",", nTokenPos);
-		while (!strToken.IsEmpty())
+		while (token = strtok_s(rest, ",", &rest))
 		{
-			const size_t size = (strToken.GetLength() + 1);
-			char* vertexString = new char[size];
-			strcpy_s(vertexString, size, strToken);
-			auto vertexValue = atoi(vertexString);
+			auto vertexValue = atoi(token);
 
 			if (!vertexValue)
 			{
 				const char* name = typeid(int).name();
-				throw new BadVertexValueException(vertexString, name);
+				throw new BadVertexValueException(token, name);
 			}
 
 			auto neighbour = std::find_if(vertices.begin(), vertices.end(), [vertexValue](Vertex<int>* vertex) -> bool { return vertex->Compare(vertexValue); });
@@ -88,11 +87,11 @@ inline Graph<int>* GraphIO::ReadGraphFromFile(CString filename)
 			}
 			else
 			{
-				throw new VertexNotFoundException(vertexString);
+				throw new VertexNotFoundException(token);
 			}
-
-			strToken = strNeighbors.Tokenize(",", nTokenPos);
 		}
+
+		strNeighbors.ReleaseBuffer();
 	}
 
 	// Проверяем на правильность введённого файла
